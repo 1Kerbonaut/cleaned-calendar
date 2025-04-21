@@ -41,11 +41,6 @@ jobs:
       # Step 5: Check git status and print changes (for debugging)
       - name: Check git status
         run: git status
-      #Debug
-      - name: Debug git status
-        run: |
-          git status
-          git remote -v
 
       # Step 6: Check if the .ics file has changed and commit if necessary
       - name: Check if .ics file has changed
@@ -57,11 +52,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add -A
+          git add docs/cleaned_calendar.ics
           git commit -m "Update cleaned calendar" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
           git push origin main
 
+          
           
           
           
