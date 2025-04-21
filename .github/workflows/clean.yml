@@ -59,6 +59,9 @@ jobs:
           git config user.email "actions@github.com"
           git add -A
           git commit -m "Update cleaned calendar" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.CALENDAR_TOKEN }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin main
 
-      
+          
+          
+          
