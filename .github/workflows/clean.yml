@@ -37,10 +37,10 @@ jobs:
       # Step 4: Run your Python script
       - name: Run the clean script
         run: python clean_ics.py
-        
+
       # Step 5: Check git status and print changes (for debugging)
-      - name: Check git status
-        run: git status
+      #- name: Check git status
+      #  run: git status
 
       # Step 6: Check if the .ics file has changed and commit if necessary
       - name: Check if .ics file has changed
