@@ -56,5 +56,4 @@ jobs:
           git commit -m "Update cleaned calendar"
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
 
-    This line replaces the default git push with one that uses your token:
           )
