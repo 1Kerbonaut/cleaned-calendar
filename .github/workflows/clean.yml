@@ -56,12 +56,8 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add docs/cleaned_calendar.ics
-          git commit -m "Update cleaned calendar" || echo "No changes to commit"
-          
-        # THIS LINE sets the origin explicitly with your token
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
-          
-        # Now push using origin/main explicitly
+          git commit -m "Update cleaned calendar" || echo "No changes to commit"      
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}     
           git push origin main
 
           
