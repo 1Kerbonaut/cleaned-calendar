@@ -51,7 +51,7 @@ jobs:
           git diff --exit-code docs/cleaned_calendar.ics || echo "File has changed"
 
       # Step 7: Commit and push changes if the file has changed
-            - name: Commit and push changes
+      - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
