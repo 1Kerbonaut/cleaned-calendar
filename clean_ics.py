@@ -9,7 +9,7 @@ ics = requests.get(SOURCE_URL).text
 cleaned = []
 
 # Match example: "Seminar: 04-M30-EM-ITPY Introduction to Python"
-pattern = re.compile(r"^[^:]+:\s+(?:[A-Z0-9]+-)+([A-Z]+)\s+(.*)$")
+pattern = re.compile(r"^[^:]+:\s+(?:[A-Z0-9]+-)+[A-Z0-9]+\s+(.*)$")
 
 for line in ics.splitlines():
     if line.startswith("SUMMARY:"):
