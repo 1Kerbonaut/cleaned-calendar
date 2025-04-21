@@ -50,11 +50,8 @@ jobs:
       # Step 7: Commit and push changes if the file has changed
       - name: Commit and push changes
         run: |
-          git diff --exit-code docs/cleaned_calendar.ics || (
-            git config --global user.name "GitHub Actions"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
-            git add docs/cleaned_calendar.ics
-            git commit -m "Update cleaned calendar"
-            git push
-          )
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add cleaned_calendar.ics
+          git commit -m "Update cleaned calendar"
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
