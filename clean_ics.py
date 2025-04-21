@@ -8,7 +8,7 @@ OUTPUT_PATH = "docs/cleaned_calendar.ics"
 ics = requests.get(SOURCE_URL).text
 cleaned = []
 
-# Match example: "Seminar: 04-M30-EM-ITPY Introduction to Python"
+# Flexible pattern to extract the course name after the codes
 pattern = re.compile(r"^[^:]+:\s+(?:[A-Z0-9]+-)+[A-Z0-9]+\s+(.*)$")
 
 for line in ics.splitlines():
@@ -16,7 +16,7 @@ for line in ics.splitlines():
         original = line[8:].strip()
         match = pattern.match(original)
         if match:
-            title = match.group(2)
+            title = match.group(1)  # Access the first capturing group for course name
             cleaned.append("SUMMARY:" + title)
         else:
             cleaned.append("SUMMARY:" + original)
