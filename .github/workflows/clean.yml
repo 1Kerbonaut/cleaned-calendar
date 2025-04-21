@@ -41,6 +41,9 @@ jobs:
       # Step 5: Check git status and print changes (for debugging)
       - name: Check git status
         run: git status
+      - name: Test token access (debug)
+        run: |
+          curl -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" https://api.github.com/user
 
       # Step 6: Check if the .ics file has changed and commit if necessary
       - name: Check if .ics file has changed
