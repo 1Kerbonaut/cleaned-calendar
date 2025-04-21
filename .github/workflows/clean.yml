@@ -58,8 +58,7 @@ jobs:
           git add docs/cleaned_calendar.ics
           git commit -m "Update cleaned calendar" || echo "No changes to commit"
           git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
-      - name: Debug git remote
-          run: git remote -v
+          git remote -v
 
           
           
