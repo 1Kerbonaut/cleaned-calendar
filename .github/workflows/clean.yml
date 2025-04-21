@@ -51,17 +51,18 @@ jobs:
           git diff --exit-code docs/cleaned_calendar.ics || echo "File has changed"
 
       # Step 7: Commit and push changes if the file has changed
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add docs/cleaned_calendar.ics
-          git commit -m "Update cleaned calendar" || echo "No changes to commit"      
+          git commit -m "Update cleaned calendar" || echo "No changes to commit"
+          
+      # Force set the remote URL with token
           git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
-      - name: Show git remote details
-        run: git remote -v     
-      - name: Push changes
-        run: git push origin main
+          
+      # Debug the remote URL to confirm it's updated
+          git remote -v
 
           
           
