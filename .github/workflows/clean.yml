@@ -57,12 +57,9 @@ jobs:
           git config user.email "actions@github.com"
           git add docs/cleaned_calendar.ics
           git commit -m "Update cleaned calendar" || echo "No changes to commit"
-          
-      # Force set the remote URL with token
           git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
-          
-      # Debug the remote URL to confirm it's updated
-          git remote -v
+      - name: Debug git remote
+          run: git remote -v
 
           
           
