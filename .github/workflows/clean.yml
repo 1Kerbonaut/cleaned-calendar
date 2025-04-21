@@ -1,0 +1,35 @@
+name: Clean University Calendar
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'  # every 1 hours
+  workflow_dispatch:       # manual trigger
+  push:
+    paths:
+      - '**.py'
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run script
+        run: python clean_ics.py
+
+      - name: Commit cleaned calendar
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add docs/cleaned_calendar.ics
+          git commit -m "Update cleaned calendar" || echo "No changes"
+          git push
