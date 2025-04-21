@@ -52,6 +52,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add cleaned_calendar.ics
+          git add docs/cleaned_calendar.ics
           git commit -m "Update cleaned calendar"
           git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
