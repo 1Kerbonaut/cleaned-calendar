@@ -46,7 +46,9 @@ jobs:
       - name: Check if .ics file has changed
         id: changes_detected
         run: |
-          git diff --quiet docs/cleaned_calendar.ics || echo "File has changed"
+          if [ -n "$(git diff --quiet docs/cleaned_calendar.ics)" ]; then
+            echo "::set-output name=changes_detected::true"
+          fi
 
       # Step 7: Commit and push changes if the file has changed
       - name: Commit and push changes
