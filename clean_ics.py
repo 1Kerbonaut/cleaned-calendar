@@ -26,5 +26,7 @@ for line in ics.splitlines():
 # Ensure output directory exists
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
+print(f"Number of lines in cleaned calendar: {len(cleaned)}")
+
 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write("\n".join(cleaned))
