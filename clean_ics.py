@@ -1,24 +1,30 @@
 import requests
 import re
+import os
 
-# Your university calendar feed URL
 SOURCE_URL = "https://elearning.uni-bremen.de/dispatch.php/ical/index/HWGXt9vk"
-
-def clean_summary(summary):
-    # Try to extract course name from known format
-    match = re.search(r'(?:CM|EM)-([A-Z]+)\s+(.*)', summary)
-    return match.group(2) if match else summary
+OUTPUT_PATH = "docs/cleaned_calendar.ics"
 
 ics = requests.get(SOURCE_URL).text
 cleaned = []
 
+# Match example: "Seminar: 04-M30-EM-ITPY Introduction to Python"
+pattern = re.compile(r"^[^:]+:\s+(?:[A-Z0-9]+-)+([A-Z]+)\s+(.*)$")
+
 for line in ics.splitlines():
     if line.startswith("SUMMARY:"):
         original = line[8:].strip()
-        cleaned_line = clean_summary(original)
-        cleaned.append("SUMMARY:" + cleaned_line)
+        match = pattern.match(original)
+        if match:
+            title = match.group(2)
+            cleaned.append("SUMMARY:" + title)
+        else:
+            cleaned.append("SUMMARY:" + original)
     else:
         cleaned.append(line)
 
-with open("docs/cleaned_calendar.ics", "w", encoding="utf-8") as f:
+# Ensure output directory exists
+os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write("\n".join(cleaned))
