@@ -44,11 +44,13 @@ jobs:
 
       # Step 6: Check if the .ics file has changed and commit if necessary
       - name: Check if .ics file has changed
+        id: changes_detected
         run: |
-          git diff --exit-code docs/cleaned_calendar.ics || echo "File has changed"
+          git diff --quiet docs/cleaned_calendar.ics || echo "File has changed"
 
       # Step 7: Commit and push changes if the file has changed
       - name: Commit and push changes
+        if: steps.changes_detected.outputs.changes_detected == 'true'
         run: |
           git config user.name "1Kerbonaut"
           git config user.email "1Kerbonaut@users.noreply.github.com"
@@ -56,7 +58,5 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}          
           git commit -am "Update cleaned calendar"
           git push
-          
-          
           
           
