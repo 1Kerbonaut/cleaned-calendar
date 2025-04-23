@@ -8,7 +8,7 @@ on:
 
   # Trigger every 15 minutes
   schedule:
-    - cron: '*/15 3-21 * * *'  # This runs every 15 minutes (but only from 3-21 UTC)
+    - cron: '*/60 3-21 * * *'  # This runs every 15 minutes (but only from 3-21 UTC)
 
   # Allow manual trigger (optional)
   workflow_dispatch:
