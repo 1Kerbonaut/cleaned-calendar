@@ -22,6 +22,20 @@ for line in ics.splitlines():
             cleaned.append("SUMMARY:" + title)
         else:
             cleaned.append("SUMMARY:" + original)
+    if line.startswith("LOCATION:"):        
+        # if line contains SFG, IW3, or FZB, add adress
+        # adresses:
+        # SFG 2030 - Enrique-Schmidt-Straße 7, 28359 Bremen
+        # IW3 2020 - Ingenieurwissenschaften 3, Hochschulring 18, 28359 Bremen
+        # FZB 0240 - Badgasteiner Straße 3, 28359 Bremen
+        if "SFG" in line:
+            cleaned.append(line + ", Enrique-Schmidt-Straße 7, 28359 Bremen")
+        elif "IW3" in line:
+            cleaned.append(line + ", Ingenieurwissenschaften 3, Hochschulring 18, 28359 Bremen")
+        elif "FZB" in line:
+            cleaned.append(line + ", Badgasteiner Straße 3, 28359 Bremen")
+        else:
+            cleaned.append(line)
     else:
         cleaned.append(line)
 # Ensure output directory exists
