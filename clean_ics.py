@@ -29,11 +29,11 @@ for line in ics.splitlines():
         # IW3 2020 - Ingenieurwissenschaften 3, Hochschulring 18, 28359 Bremen
         # FZB 0240 - Badgasteiner Straße 3, 28359 Bremen
         if "SFG" in line:
-            cleaned.append(line + ", Enrique-Schmidt-Straße 7, 28359 Bremen")
+            cleaned.append(line + "\, Enrique-Schmidt-Straße 7\, 28359 Bremen")
         elif "IW3" in line:
-            cleaned.append(line + ", Ingenieurwissenschaften 3, Hochschulring 18, 28359 Bremen")
+            cleaned.append(line + "\, Hochschulring 18\, 28359 Bremen")
         elif "FZB" in line:
-            cleaned.append(line + ", Badgasteiner Straße 3, 28359 Bremen")
+            cleaned.append(line + "\, Badgasteiner Straße 3\, 28359 Bremen")
         else:
             cleaned.append(line)
     else:
