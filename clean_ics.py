@@ -22,7 +22,7 @@ for line in ics.splitlines():
             cleaned.append("SUMMARY:" + title)
         else:
             cleaned.append("SUMMARY:" + original)
-    if line.startswith("LOCATION:"):        
+    elif line.startswith("LOCATION:"):        
         # if line contains SFG, IW3, or FZB, add adress
         # adresses:
         # SFG 2030 - Enrique-Schmidt-Straße 7, 28359 Bremen
