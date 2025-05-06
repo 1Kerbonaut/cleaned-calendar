@@ -31,7 +31,7 @@ for line in ics.splitlines():
         if "SFG" in line:
             cleaned.append(line + "\, Enrique-Schmidt-Straße 7\, 28359 Bremen")
         elif "IW3" in line:
-            cleaned.append(line + "\, Hochschulring 18\, 28359 Bremen")
+            cleaned.append(line + "\, Am Biologischen Garten 2\, 28359 Bremen")
         elif "FZB" in line:
             cleaned.append(line + "\, Badgasteiner Straße 3\, 28359 Bremen")
         else:
