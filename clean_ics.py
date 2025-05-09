@@ -3,7 +3,7 @@ import re
 import os
 
 SOURCE_URL = "https://elearning.uni-bremen.de/dispatch.php/ical/index/HWGXt9vk"
-OUTPUT_PATH = "docs/cleaned_calendar.ics"
+OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "docs", "cleaned_calendar.ics")
 
 ics = requests.get(SOURCE_URL).text
 cleaned = []
@@ -29,11 +29,11 @@ for line in ics.splitlines():
         # IW3 2020 - Ingenieurwissenschaften 3, Hochschulring 18, 28359 Bremen
         # FZB 0240 - Badgasteiner Straße 3, 28359 Bremen
         if "SFG" in line:
-            cleaned.append(line + "\, Enrique-Schmidt-Straße 7\, 28359 Bremen")
+            cleaned.append(line + r"\, Enrique-Schmidt-Straße 7\, 28359 Bremen")
         elif "IW3" in line:
-            cleaned.append(line + "\, Am Biologischen Garten 2\, 28359 Bremen")
+            cleaned.append(line + r"\, Am Biologischen Garten 2\, 28359 Bremen")
         elif "FZB" in line:
-            cleaned.append(line + "\, Badgasteiner Straße 3\, 28359 Bremen")
+            cleaned.append(line + r"\, Badgasteiner Straße 3\, 28359 Bremen")
         else:
             cleaned.append(line)
     else:
